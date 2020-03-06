@@ -7,13 +7,13 @@ import java.util.Scanner;
 // Delete operations
 public class Delete implements Operations {
     private String sql;
-    private String name;
+    private String id;
     PreparedStatement statement = null;
     public void doOerations() throws SQLException {
         takeInput();
-        sql = "DELETE FROM employeedemo.employee WHERE name=?";
+        sql = "DELETE FROM employeedemo.employee WHERE id=?";
         statement = ConnectionDetails.connection.prepareStatement(sql);
-        statement.setString(1,name);
+        statement.setString(1,id);
         int rowsDeleted = statement.executeUpdate();
         if (rowsDeleted > 0) {
             System.out.println("A user was deleted successfully!");
@@ -24,7 +24,7 @@ public class Delete implements Operations {
     }
     private void takeInput() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter user name which you want to delete !!!");
-        name = sc.nextLine();
+        System.out.println("Enter user id which you want to delete !!!");
+        id = sc.nextLine();
     }
 }
