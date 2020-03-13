@@ -33,7 +33,11 @@ public class Controller {
                     operations = OperationGenerator.generate("Delete");
                     break;
                 default:
-                    return;
+                    try {
+                        ConnectionDetails.connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
             }
             try {
                 operations.doOerations();
